@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://app.virtusindonesia.com/docs/elasticsearch-installation/sitemap.xml.gz
