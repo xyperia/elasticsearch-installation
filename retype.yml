@@ -1,0 +1,33 @@
+input: ./
+output: .retype
+url: https://app.virtusindonesia.com/docs/elasticsearch-installation/
+
+branding:
+  label: Docs
+  title: Elasticsearch
+
+meta:
+  title: " | Elasticsearch"
+
+edit:
+  repo: github.com/xyperia/elasticsearch-installation
+
+links:
+  - text: Home
+    link: /README.md
+    icon: home
+
+  - text: Other Docs
+    link: https://elastic.co/
+    icon: log
+    target: blank
+
+footer:
+  copyright: © Copyright {{ year }}. [VTI](https://virtusindonesia.com/) All rights reserved.
+  links:
+    - text: About
+      link: about.md
+
+integrations:
+  googleAnalytics:
+    id: G-HLTYMRVPG4
