@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/docs/elasticsearch-installation">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718770395363">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718774789898">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/elasticsearch-installation/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.718770395363" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.718774789898" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718770395363" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718774789898" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718770395363" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718774789898" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -213,15 +213,37 @@
 </doc-anchor-target>
 <hr />
 <p>Elasticsearch memerlukan resource agar dapat berjalan dengan optimal. Oleh karena itu, perlu dinaikan limitasi proses yang dapat berjalan di sistem operasi.</p>
-<p>Selanjutnya tambahkan konfigurasi berikut di <strong>/etc/security/limits.conf</strong></p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">* - memlock unlimited
-* - nofile 100000
-* - nproc 32768
-* - as unlimited</code></pre>
-</doc-codeblock></div>
-<p>Tambahkan juga konfigurasi berikut di <strong>/etc/sysctl.conf</strong>
-<code v-pre>vm.max_map_count=262145</code></p>
+<p>Selanjutnya tambahkan konfigurasi berikut</p>
+<doc-panel id="etc-security-limits-conf">
+    <template #title>/etc/security/limits.conf</template>
+<ul>
+<li>
+<ul>
+<li>memlock unlimited</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>nofile 100000</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>nproc 32768</li>
+</ul>
+</li>
+<li>
+<ul>
+<li>as unlimited</li>
+</ul>
+</li>
+</ul>
+</doc-panel>
+<p>Tambahkan juga konfigurasi berikut</p>
+<doc-panel id="etc-sysctl-conf">
+    <template #title>/etc/sysctl.conf</template>
+<p>vm.max_map_count=262145</p>
+</doc-panel>
 
                                 <div class="flex items-center mt-6 mb-6 clear-both">
                                     <span>

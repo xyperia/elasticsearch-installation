@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/docs/elasticsearch-installation">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718770395363">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.718774789898">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -25,23 +25,23 @@
     <meta property="og:url" content="https://app.virtusindonesia.com/docs/elasticsearch-installation/kibana-installation/2/">
     <meta property="og:title" content="Securing Kibana | Elasticsearch">
     <meta property="og:description" content="Agar portal Kibana bisa diakses menggunakan port 443 (HTTPS), pada console node 1 pada folder [elastic home]/ jalankan perintah berikut:">
-    <meta property="og:image" content="https://app.virtusindonesia.com/docs/elasticsearch-installation/static/images/15.png">
+    <meta property="og:image" content="https://app.virtusindonesia.com/docs/elasticsearch-installation/static/images/16.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://app.virtusindonesia.com/docs/elasticsearch-installation/kibana-installation/2/">
     <meta property="twitter:title" content="Securing Kibana | Elasticsearch">
     <meta property="twitter:description" content="Agar portal Kibana bisa diakses menggunakan port 443 (HTTPS), pada console node 1 pada folder [elastic home]/ jalankan perintah berikut:">
-    <meta property="twitter:image" content="https://app.virtusindonesia.com/docs/elasticsearch-installation/static/images/15.png">
+    <meta property="twitter:image" content="https://app.virtusindonesia.com/docs/elasticsearch-installation/static/images/16.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("/docs/elasticsearch-installation/doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../../favicon.ico" rel="icon" />
-    <link href="../../resources/css/retype.css?v=2.4.0.718770395363" rel="stylesheet" />
+    <link href="../../resources/css/retype.css?v=2.4.0.718774789898" rel="stylesheet" />
 
-    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718770395363" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../../resources/js/config.js?v=2.4.0.718774789898" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718770395363" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../../resources/js/lunr.js?v=2.4.0.718774789898" data-turbo-eval="false" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -218,13 +218,18 @@
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bin/elasticsearch-keystore show xpack.security.http.ssl.keystore.secure_password</code></pre>
 </doc-codeblock></div>
+<p><figure class="content-center">
+    <img src="../../static/images/16.png" alt="" />
+    <figcaption class="caption"></figcaption>
+</figure>
+</p>
 <p>Kemudian jalankan perintah berikut untuk create crt dan key. Gunakan password sebelumnya untuk menjalankan perintah berikut.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">openssl pkcs12 -in config/certs/http.p12 -clcerts -nokeys -out server-kibana.crt
 openssl pkcs12 -in config/certs/http.p12 -nocerts -nodes -out server-kibana.key</code></pre>
 </doc-codeblock></div>
 <p><figure class="content-center">
-    <img src="../../static/images/15.png" alt="" />
+    <img src="../../static/images/17.png" alt="" />
     <figcaption class="caption"></figcaption>
 </figure>
 </p>
@@ -232,21 +237,22 @@ openssl pkcs12 -in config/certs/http.p12 -nocerts -nodes -out server-kibana.key<
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">scp [file] xyperia@[ip tujuan]:[path tujuan]</code></pre>
 </doc-codeblock></div>
-<p>Selanjutnya ubah file konfigurasi Kibana di <strong>config/kibana.yml</strong> dan tambahkan atau aktifkan baris berikut:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">xpack.security.encryptionKey: &quot;something_at_least_32_characters&quot;
+<p>Selanjutnya ubah file konfigurasi Kibana dan tambahkan atau aktifkan baris berikut:</p>
+<doc-panel id="config-kibana-yml">
+    <template #title>config/kibana.yml</template>
+<p>xpack.security.encryptionKey: &quot;something_at_least_32_characters&quot;
 xpack.encryptedSavedObjects.encryptionKey: &quot;something_at_least_32_characters&quot;
 server.ssl.enabled: true
 server.ssl.certificate: /home/xyperia/kibana-8.4.2/config/certs/server-kibana.crt
-server.ssl.key: /home/xyperia/kibana-8.4.2/config/certs/server-kibana.key</code></pre>
-</doc-codeblock></div>
+server.ssl.key: /home/xyperia/kibana-8.4.2/config/certs/server-kibana.key</p>
+</doc-panel>
 <p>Stop Kibana dengan menekan tombol <strong>CTRL+C</strong>, kemudian jalankan kembali Kibana menggunakan perintah.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">bin/kibana &amp;</code></pre>
 </doc-codeblock></div>
 <p>Setelah Kibana berhasil jalan, pastikan kembali dengan mengakses Kibana menggunakan secure protocol (https://[ip kibana]:5601/).</p>
 <p><figure class="content-center">
-    <img src="../../static/images/16.png" alt="" />
+    <img src="../../static/images/18.png" alt="" />
     <figcaption class="caption"></figcaption>
 </figure>
 </p>
